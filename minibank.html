@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Page Title</title>
+        
+        <style>
+          body{
+  background-color: #edebeb;
+  padding-top: 20px;
+}
+.intro-div{
+  display:flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+input{
+  border: 1px solid green;
+  padding: 3px;
+  border-radius: 3px;
+}
+.main-div{
+  display:flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px;
+  animation-name: slideLeft;
+  animation-duration: 2s;
+  border-radius: 5px;
+}
+.result-div{
+  display:flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  animation-name: slideLeft;
+  animation-duration: 3s;
+  border-radius: 5px;
+}
+  @keyframes slideLeft{
+    from {transform: translate(300px)}
+  }
+p{
+  color: green;
+  margin: 0;
+}
+button{
+  font-weight: bold;
+  border:none;
+  border-radius: 3px;
+  padding: 5px;
+  color: white;
+  background-color: green;
+}
+  .title{
+    font-size: 40px;
+  }
+        </style>
+    </head>
+    <body>
+      <div class="intro-div">
+        <p class="title" >
+        Mini Bank
+      </p>
+      <p>
+        Deposits are free
+      </p>
+      <p>
+        Withdrawal charge $2.5
+      </p>
+      </div>
+      <div class="main-div">
+        <p class="user-input">
+          User Input
+        </p>
+        <input id="nameId" placeholder="Enter Name">
+        <input id="balanceId" placeholder="Enter account balance">
+        <input id="choiceId" placeholder="Enter deposit or withdrawal amt">
+        <div class="button-div">
+          <button onclick="depositBtn()">
+          Deposit
+        </button>
+        <button onclick="withdrawalBtn()">
+          withdrawal
+        </button>
+        <button onclick="resetBtn()">
+          Reset
+        </button>
+        </div>
+      </div>
+      <div class="result-div">
+        <p>
+          Reciept
+        </p>
+        <p id="p1">
+          
+        </p>
+      </div>
+      <script>
+let deposit = [];
+let withdrawal = [];
+
+//reset button function
+function resetBtn(){
+  deposit = [];
+  withdrawal = [];
+  document.getElementById("p1").textContent = "";
+}
+//deposit function
+function depositBtn(){
+//introduce elements to store user info
+ let element1 = document.getElementById("nameId").value;
+ let element2 = document.getElementById("balanceId").value;
+ element2 = Number(element2);
+ let element3 = document.getElementById("choiceId").value;
+ element3 = Number(element3);
+//element4 is the final balance
+ let element4 = element2 + element3;
+// add elements to deposit array
+ deposit.push(`Name: ${element1}`, `Account Balance: $${element2}`, `Deposit Amount: $${element3}`, `New Balance: $${element4}`);
+ document.getElementById("p1").innerHTML = deposit.join('<br>');
+}
+//withdrawal function
+function withdrawalBtn(){
+//introduce elements to store user info
+ let element1 = document.getElementById("nameId").value;
+ let element2 = document.getElementById("balanceId").value;
+ element2 = Number(element2);
+ let element3 = document.getElementById("choiceId").value;
+ element3 = Number(element3);
+//element4 is the final balance
+// conditions
+ let element4;
+ if (element3 > element2){
+   element4 = "Not enough funds";
+ } else if ((element2 - element3) - 2.5 < 0){
+   element4 = "New balance negative";
+ } else {
+   element4 = (element2 - element3) - 2.5;
+ }
+// add elements to withdrawal array
+ withdrawal.push(`Name: ${element1}`, `Account Balance: $${element2}`, `withdrawal amount: $${element3}`, `New Balance: $${element4}`);
+ document.getElementById("p1").innerHTML = withdrawal.join('<br>');
+}
+
+      </script>
+    </body>
+</html>
