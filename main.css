@@ -82,3 +82,9 @@ a{
 .email-svg{
   width: 40px;
 }
+.project-options-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
