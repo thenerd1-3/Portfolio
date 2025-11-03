@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Page Title</title>
+        <style>
+          body{
+  background-color: #e2e0dc;
+  padding-top: 70px;
+}
+.title{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+#userDivId{
+  background-color:rgba(255,255,255,0.5);
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 7px;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  margin-bottom: 20px;
+  animation-name: slideLeft;
+  animation-duration: 3s;
+}
+  @keyframes slideLeft{
+    from {transform: translate(300px)}
+  }
+input{
+  border: 1px solid lawngreen;
+  padding: 5px;
+  border-radius: 5px;
+}
+input::placeholder {
+  font-size: 12px;
+}
+button{
+  background-color: lawngreen;
+  font-weight: 500;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 2px;
+}
+#videoContainer{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  background-color:rgba(255,255,255,0.5);
+  padding: 10px;
+  gap: 20px;
+  border-radius: 5px;
+  animation-name: slideLeft;
+  animation-duration: 2s;
+}
+p{
+  margin: 0;
+  color: #454545;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+.vdiv{
+  background-color: #81f90b;
+  display:flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  border-radius: 5px;
+}
+        </style>
+    </head>
+    <body>
+      <div class="title">
+        <p>
+          LearnON
+        </p>
+      </div>
+
+      <div id="userDivId">
+        <p>
+        Get url from youtube
+      </p>
+        <input id="titleId" placeholder="Enter Video title eg. Algebra">
+        <input id="subjectId" placeholder="Enter Subject eg. Math">
+        <input id="urlId" placeholder="Enter Video URL">
+        <button id="uploadBtn">
+          Upload video
+        </button>
+      </div>
+      <div id="videoContainer">
+        
+      </div>
+
+      <script>
+      
+let array = [
+  {
+    title: "Algebra"  ,
+    subject: "Math",
+    url: "https://youtu.be/LwCRRUa8yTU?si=1srRFqhNlOTxZ87H"
+  },
+  {
+    title: "Atomic structure" ,
+    subject: "Chemistry",
+    url: "https://youtu.be/acdkMeEKCNQ?si=_cLUq5XBKQSFeoT4"
+  },
+  {
+    title: "Si units",
+    subject: "Physics",
+    url: "https://youtu.be/O8oZFaaJTUc?si=rA0lxNoMoVaZP0qA"
+  }
+  ];
+//display initial videos
+array.forEach(function(video){
+//create new elements
+  let title = document.createElement("p");
+  let subject = document.createElement("p");
+  let link = document.createElement("a");
+  let div = document.createElement("div");
+//assign their content to whats in array
+  title.textContent = video.title;
+  subject.textContent = video.subject;
+  link.href = video.url;
+  link.textContent = "Play video";
+  div.className = "vdiv";
+//save new elements to div
+  div.appendChild(title);
+  div.appendChild(subject);
+  div.appendChild(link);
+//display new elements
+  document.getElementById("videoContainer").appendChild(div);
+});
+//user upload now
+let uploadbtn = document.getElementById("uploadBtn");
+uploadbtn.addEventListener("click",function( ){
+    let element1 = document.getElementById("titleId").value;
+    let element2 = document.getElementById("subjectId").value;
+    let element3 = document.getElementById("urlId").value;
+    if (element1.trim() === "" 
+    && element2.trim() === "" && element3.trim() === ""
+    ){
+      element1 = "No Title";
+      element2 = "No Subject";
+      element3 = "#";
+    }
+  //create new elements
+  let title = document.createElement("p");
+  let subject = document.createElement("p");
+  let link = document.createElement("a");
+  let div = document.createElement("div");
+  //assign new elements to elements
+  title.textContent = element1;
+  subject.textContent = element2;
+  link.href = element3;
+  link.textContent = "Play Video";
+  link.target = "_blank";
+  //give class name to div
+  div.className = "vdiv";
+  //add new elements to array
+  array.unshift(
+    {
+      title: element1,
+      subject: element2,
+      url: element3
+    }
+    );
+  //save new elements to div
+  div.appendChild(title);
+  div.appendChild(subject);
+  div.appendChild(link);
+  //display
+  document.getElementById("videoContainer").prepend(div);
+  //reset inputs
+  document.getElementById("titleId").value = "";
+  document.getElementById("subjectId").value = "";
+  document.getElementById("urlId").value = "";
+});
+
+      </script>
+    </body>
+</html>
