@@ -1,0 +1,74 @@
+body{
+  background-color: black;
+  padding-top: 70px;
+}
+p{
+  margin: 3px;
+  color: black;
+}
+.learnon{
+  font-weight: bold;
+}
+button{
+  color: black;
+  background-color: #76f65b;
+  padding: 5px 10px;
+  border-radius:6px;
+  font-weight: bold;
+  border: none;
+}
+input{
+  color: black;
+  background-color: whitesmoke;
+  padding: 5px 10px;
+  border-radius:6px;
+  font-weight: bold;
+  border: none;
+}
+.navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  background-color: #eceaea;
+}
+#navbarbtn{
+  display: none;
+}
+#uploadDivId, #notificationId{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  gap: 7px;
+  background-color: #eceaea;
+   margin-bottom: 10px;
+}
+
+#mainDiv{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap:10px;
+}
+.videoDiv{
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+   background-color: #76f65b;
+   border-radius: 7px;
+   animation-name: slideLeft;
+  animation-duration: 3s;
+}
+@keyframes slideLeft{
+    from {transform: translate(-300px)}
